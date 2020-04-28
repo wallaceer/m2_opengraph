@@ -1,9 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <attribute name="prefix" value="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#" />
+    </head>
     <body>
+        <!--referenceContainer name="head.additional">
+            <block class="Magento\Catalog\Block\Product\View" name="opengraph.general" template="Ws_Opengraph::general.phtml" ifconfig="ws_opengraph/ws_general/ws_opengraph_enable"/>
+        </referenceContainer -->
+
         <referenceBlock name="opengraph.general">
             <action method="setTemplate">
-                <argument name="template" xsi:type="string">Ws_Opengraph::general.phtml</argument>
+                <argument name="template" xsi:type="helper" helper="Ws\Opengraph\Helper\Data::getTemplate"></argument>
             </action>
         </referenceBlock>
+
     </body>
 </page>

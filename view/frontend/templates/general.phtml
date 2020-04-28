@@ -1,0 +1,16 @@
+<?php
+$blockObj= $block->getLayout()->createBlock('Ws\Opengraph\Block\Product');
+$_wsProduct = $blockObj->getLoadProduct();
+
+?>
+<meta property="og:type" content="product" />
+<meta property="og:site_name" content="<?= $blockObj->shopTitle() ?>" />
+<meta property="og:title" content="<?= $_wsProduct->getName() ?>" />
+<meta property="og:image" content="<?= $block->escapeUrl($blockObj->getProductImage('product_page_image_large')) ?>" />
+<meta property="og:description" content="<?= ($block->stripTags($_wsProduct->getShortDescription())) ?>" />
+<meta property="og:url" content="<?= $block->escapeUrl($_wsProduct->getProductUrl()) ?>" />
+<?php if ($priceAmount = $_wsProduct->getFinalPrice()):?>
+    <meta property="product:price:amount" content="<?= /* @escapeNotVerified */ $priceAmount ?>"/>
+    <meta property="product:price:currency"
+          content="<?= /* @noEscape */ $block->stripTags($blockObj->getCurrentCurrencyCode()) ?>"/>
+<?php endif;?>
